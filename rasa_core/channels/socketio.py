@@ -68,11 +68,9 @@ class SocketIOOutput(OutputChannel):
         }
 
         for button in buttons:
-            message["quick_replies"].append({
-                "content_type": "text",
-                "title": button['title'],
-                "payload": button['payload']
-            })
+            button_dict = button
+            button_dict["context_type"] = "text"
+            message["quick_replies"].append(button_dict)
 
         self._send_message(self.sid, message)
 
